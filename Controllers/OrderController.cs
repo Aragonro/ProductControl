@@ -144,7 +144,19 @@ namespace ProductControl.Controllers
                     try
                     {
                         List<OrderDTO> orders = orderService.GetOrdersDelivering().ToList();
-                        return Json(orders, JsonRequestBehavior.AllowGet);
+                        List<GetDeliveryOrder> deliveryOrders = new List<GetDeliveryOrder>();
+                        foreach(var order in orders)
+                        {
+                            GetDeliveryOrder deliveryOrder = new GetDeliveryOrder
+                            {
+                                DeliveryAddress=order.DeliveryAddress,
+                                DeliveryDate=order.DeliveryDate.ToString(),
+                                Price=order.Price
+                            };
+                            deliveryOrders.Add(deliveryOrder);
+                            
+                        }
+                        return Json(deliveryOrders, JsonRequestBehavior.AllowGet);
                     }
                     catch
                     {
