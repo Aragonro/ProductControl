@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registration</title>
+    <meta charset="utf-8" />
+    <script type="text/javascript" src="Scripts/jquery-3.2.1.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+</head>
+<body style="width:100%;background-image:url(Images/mainimage.jpg);">
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="Main.html" style="font-family: 'Times New Roman', Times, serif; font-style: italic; ">ProductControl</a>
+            </div>
+            <div id=app>
+            <ul class="nav navbar-nav">
+                <li><a href="Main.html">Home</a></li>
+                <li v-for="(value, key) in leftName"><a :href="leftHref[key]">{{value}}</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" id="navulright">
+                <li v-for="(value, key) in rightName"><a :href="rightHref[key]">{{value}}</a></li>
+            </ul>
+        </div>
+        </div>
+    </nav>
+     <div style="width:25%;margin: 0 auto;margin-top: 100px;text-align: center;background-color:grey;"class="form-horizontal">
+            <div id="legend">
+                <legend >My Sensors</legend>
+            </div>
+         <div id="my-form">
+             <ul v-for="output in outputs" class="list-group list-group-flush" style="background-color:grey;">
+                <li v-for="(value,key) in output" class="list-group-item" style="background-color:grey;text-align:left;">
+                    {{outputsName[key]}} : {{value}}
+                 </li><br>
+                 <p>Email courier</p>
+                 <input type="text" :id="courier+output.Id"><br>
+                 <p>Delivery date</p>
+                  <input type="datetime" :id="date+output.Id"><br>
+                 <div style="text-align:center;"><a v-on:click="postOrder(output.Id)" ><button class="btn btn-primary">Set Courier</button></a></div>
+             </ul>
+             <div style="hight:100px; background-color:blue">
+             
+             </div>
+         </div>
+         <br/>
+    </div>
+        <script src="Scripts/Orders.js"></script>
+        <script src="Scripts/upBar.js"></script>
+</body>
+</html>
